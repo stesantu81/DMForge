@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Dm-forge - Toolkit For Masters</title>
+    <!-- Foglio di stile principale dell'applicazione -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Manrope da Google Fonts (commentato: attivare se si vuole il font esterno) -->
+    <!-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet"> -->
+
+</head>
+<body>
+    <!-- Header fisso con titolo e navigazione tra i moduli -->
+    <header>
+        <h1>DM-Forge</h1>
+        <!-- Navigazione principale: ogni bottone ha data-module che identifica
+             quale sezione del <main> deve essere resa visibile al click -->
+        <nav>
+            <button data-module="combat">Combat Tracker</button>
+            <button data-module="reference">Reference</button>
+            <button data-module="generators">Generators</button>
+            <button data-module="notes">Note Campagna</button>
+        </nav>
+    </header>
+
+    <!-- Contenuto principale: ogni section corrisponde a un modulo.
+         Solo la section con classe "active" viene mostrata (vedi style.css .module / .module.active) -->
+    <main>
+        <section id="module-combat" class="module active"></section>
+        <section id="module-reference" class="module"></section>
+        <section id="module-generators" class="module"></section>
+        <section id="module-notes" class="module"></section>
+    </main>
+
+    <!-- Footer con nota sul salvataggio locale -->
+    <footer>
+        <p>Dati salvati in locale nessun account richiesto</p>
+    </footer>
+
+    <!-- Script caricati in fondo al body in ordine di dipendenza:
+         1. storage.js  → astrazione del localStorage (nessuna dipendenza)
+         2. combatTracker.js → logica del tracker (dipende da storage.js)
+         3. app.js      → logica principale e routing dei moduli (dipende da entrambi) -->
+    <script src="storage.js"></script>
+    <script src="combatTracker.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+

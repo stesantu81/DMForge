@@ -1,0 +1,99 @@
+/* =============================================
+   RESET UNIVERSALE
+   Applica box-sizing: border-box a tutti gli elementi
+   e azzera margin e padding predefiniti del browser
+   ============================================= */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* =============================================
+   VARIABILI CSS (Design Tokens)
+   Centralizza colori, font e spaziature
+   per uniformità e manutenzione semplice
+   ============================================= */
+:root {
+    --clr-bg: #1A1714;           /* Colore di sfondo principale (quasi nero caldo) */
+    --clr-text: #FFFFFF;         /* Colore del testo (bianco) */
+    --clr-accent-red: #e63946;   /* Colore accent rosso per elementi attivi/evidenziati */
+    --clr-surface: #241d18;      /* Superficie leggermente più chiara dello sfondo (es. header) */
+    --clr-surface-alt: #3d342d;  /* Superficie alternativa per hover e stati interattivi */
+    --font-body: 'Manrope', 'Segoe UI', system-ui, sans-serif; /* Font stack principale */
+    --spacing-md: 1rem;          /* Spaziatura media riutilizzabile (16px) */
+}
+
+/* =============================================
+   BODY
+   Layout a colonna flessibile per far sì che il
+   footer rimanga sempre in fondo alla pagina
+   ============================================= */
+body {
+    background: var(--clr-bg);
+    color: var(--clr-text);
+    font-family: var(--font-body);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Il <main> cresce per occupare lo spazio restante tra header e footer */
+main {
+    flex: 1;
+}
+
+/* =============================================
+   HEADER
+   Barra superiore con titolo e navigazione,
+   disposta in riga con spazio tra gli elementi
+   ============================================= */
+header {
+    background: var(--clr-surface);
+    padding: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Navigation: i bottoni affiancati con gap uniforme */
+nav {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+/* =============================================
+   BOTTONI DI NAVIGAZIONE
+   Stile base trasparente, con angoli arrotondati
+   ============================================= */
+button {
+    border: none;
+    background: transparent;
+    color: var(--clr-text);
+    padding: var(--spacing-md);
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* Hover: sfondo leggermente più chiaro per feedback visivo */
+button:hover {
+    background: var(--clr-surface-alt);
+}
+
+/* Stato attivo: evidenziato con il colore accent rosso */
+button.active {
+    background: var(--clr-accent-red);
+}
+
+/* =============================================
+   MODULI (SEZIONI DELLA PAGINA)
+   Di default ogni modulo è nascosto;
+   solo quello con classe "active" è visibile
+   ============================================= */
+.module {
+    display: none;
+}
+
+.module.active {
+    display: block;
+}
