@@ -45,6 +45,20 @@ const CombatTracker = (() => {
         saveState();
         
     }
+    function handleAdd() {
+        const name = document.getElementById("cf-name").value.trim();
+        const hp = document.getElementById("cf-hp").value;
+        const initiative = document.getElementById("cf-init").value;
+        const ac = document.getElementById("cf-ac").value;
+
+        if (name === "" || hp === "" || initiative === "" || ac === "") {
+            alert("Compila tutti i campi");
+            return;
+        }
+    
+        addEntity({ name: name, hp: hp, initiative: initiative, ac: ac });
+        render();
+    }
     function render(){
        const root = document.getElementById("module-combat");
        root.innerHTML = `
@@ -57,9 +71,16 @@ const CombatTracker = (() => {
        <div id="entities">
        </div>
        `;
+       document.getElementById("cf-add").addEventListener("click", handleAdd);
+       const list = document.getElementById("entities");
+       let html ="";
+       entities.forEach(entity => {
+        html += `<div>${entity.initiative} - ${entity.name} - ${entity.ac} - ${entity.hpCurrent}/${entity.hpMax}</div>`;
+       });
+       list.innerHTML = html;
     }
 
     // API pubblica del modulo: oggetto con i metodi accessibili dall'esterno
-    return {init, addEntity};
+    return {init};
 
 })();
